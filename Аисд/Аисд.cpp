@@ -1,4 +1,4 @@
-﻿
+
 #include <iostream>
 using namespace std;
 
@@ -36,7 +36,7 @@ int main()
 	a = new List;
 	a->prev = NULL;
 	a->next = NULL;
-	a->data = 0;
+	a->data = rand();
 
 	head = a;
 	end = a;
@@ -51,7 +51,7 @@ int main()
 	{
 		a = new List;
 		end->next = a;
-		a->data = i;
+		a->data = rand();
 		a->prev = end;
 		a->next = NULL;
 		end = a;
