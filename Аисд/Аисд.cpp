@@ -21,7 +21,21 @@ struct List {
 /*10*/void zamena_elements(int index, int num, List*& head);
 /*11*/void proverka_na_empty(List*& head);
 /*19*/void swap_by_index(int index1, int index2, List*& head);
-
+void menu() {
+	cout << "выберите что хотите сделать со списком" << endl;
+	cout << "1)добавление в конец списка " << endl;
+	cout << "2)добавление в начало списка" << endl;
+	cout << "3)удаление последнего элемента" << endl;
+	cout << "4)удаление первого элемента" << endl;
+	cout << "5)добавление элемента по индексу" << endl;
+	cout << "6)получение элемента по индексу" << endl;
+	cout << "7)удаление элемента по индексу" << endl;
+	cout << "8)получение размера списка" << endl;
+	cout << "9)удаление всех элементов списка" << endl;
+	cout << "10)замена элемента по индексу на передаваемый элемент" << endl;
+	cout << "11)проверка на пустоту списка" << endl;
+	cout << "12)обмен двух элементов списка по индексам" << endl;
+}
 
 
 
@@ -36,7 +50,7 @@ int main()
 	a = new List;
 	a->prev = NULL;
 	a->next = NULL;
-	a->data = rand();
+	a->data =0;
 
 	head = a;
 	end = a;
@@ -51,11 +65,95 @@ int main()
 	{
 		a = new List;
 		end->next = a;
-		a->data = rand();
+		a->data = i;
 		a->prev = end;
 		a->next = NULL;
 		end = a;
 	}
+	menu();
+	int choice;
+	while (1) {
+		cin >> choice;
+		switch (choice) {
+		case 1:
+			cout << "Введите элемент который хотите вставить в начало" << endl;
+			int num;
+			cin >> num;
+			add_first(num, head);
+			Print(head);
+			break;
+		case 2:
+			cout << "Введите элемент который хотите вставить в конец" << endl;
+			cin >> num;
+			add_last(num, end);
+			Print(head);
+			break;
+		case 3:
+			cout << "вы удалили последжний элемент" << endl;
+			delete_last(end);
+			Print(head);
+			break;
+		case 4:
+			cout << "вы удалили первый элемент" << endl;
+
+			delete_first(head);
+			Print(head);
+			break;
+		case 5:
+			cout << "Введите элемент перед которым хотите вставить свой элемент" << endl;
+			cin >> num;
+			add_by_index(num, head);
+			Print(head);
+			break;
+		case 6:
+			cout << "Введите элемент который хотите получить" << endl;
+			cin >> num;
+			get_element_by_index(num, head);
+			Print(head);
+
+			break;
+		case 7:
+			cout << "Введите элемент который хотите удалить" << endl;
+			cin >> num;
+			delete_by_index(num,head);
+			Print(head);
+			break;
+		case 8:
+			cout << "Вы получили размер списка" << endl;
+			get_size(head);
+			break;
+		case 9:
+			cout << "Вы удалили все элементы списка" << endl;
+			delete_all(head);
+			Print(head);
+			break;
+		case 10:
+			cout << "Введите число и индекс который хотите заменить" << endl;
+			int index;
+			cin >> num;
+			cin >> index;
+			zamena_elements(index, num,head);
+			Print(head);
+			break;
+		case 11:
+			cout << "вы проверили на пустоту список" << endl;
+			proverka_na_empty(head);
+			Print(head);
+			break;
+		case 12:
+			cin >> num;
+			cin >> index;
+			cout << "Введите 2 индекса которых хотите заменить" << endl;
+			swap_by_index(num,index,head);
+			break;
+
+		}
+		menu();
+	}
+	add_first(-128, head);
+	Print(head);
+	cout << "Добавление элемента в конец" << endl;
+	add_last(145, end);
 	Print(head);
 	
 }
